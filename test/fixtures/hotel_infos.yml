@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  when_built: 2013-08-26
+  hotel_status: MyString
+  latitude: MyString
+  longitude: MyString
+
+two:
+  when_built: 2013-08-26
+  hotel_status: MyString
+  latitude: MyString
+  longitude: MyString
