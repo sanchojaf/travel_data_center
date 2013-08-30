@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(:version => 20130830012829) do
     t.string   "phone"
     t.string   "state_name"
     t.string   "alternative_phone"
+    t.string   "fax"
+    t.string   "web"
+    t.string   "google_map_url"
+    t.string   "locate_in"
     t.integer  "hotel_info_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -36,13 +40,17 @@ ActiveRecord::Schema.define(:version => 20130830012829) do
     t.string   "hotel_status"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "property_type"
+    t.string   "segment"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "hotel_names", :force => true do |t|
     t.string   "name"
     t.string   "hotel_short_name"
+    t.string   "index_name"
+    t.string   "permalink"
     t.integer  "hotel_info_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

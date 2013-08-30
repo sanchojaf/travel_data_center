@@ -207,6 +207,8 @@ Devise.setup do |config|
   # :html, should redirect to the sign in page when the user does not have
   # access, but formats like :xml or :json, should return 401.
   #
+  config.navigational_formats = [:html, :xml, :json]
+  
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #

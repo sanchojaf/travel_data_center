@@ -1,5 +1,6 @@
 class HotelInfo < ActiveRecord::Base  
-  attr_accessible :hotel_status, :latitude, :longitude, :when_built
+  attr_accessible :hotel_status, :latitude, :longitude, :when_built, 
+                  :property_type, :segment
 
   has_one :hotel_name, :dependent => :destroy, :inverse_of => :hotel_info    
   attr_accessible :hotel_name_attributes, :allow_destroy => true
