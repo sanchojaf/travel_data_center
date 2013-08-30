@@ -1,0 +1,4 @@
+class HotelName < ActiveRecord::Base
+  attr_accessible :hotel_info_id, :hotel_short_name, :name
+  has_one :hotel_info_id
+end

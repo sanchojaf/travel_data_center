@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827032033) do
+ActiveRecord::Schema.define(:version => 20130830012829) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.string   "state_name"
+    t.string   "alternative_phone"
+    t.integer  "hotel_info_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "context_rates", :force => true do |t|
+    t.decimal  "price",      :precision => 8, :scale => 2
+    t.integer  "rate_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
 
   create_table "hotel_infos", :force => true do |t|
     t.date     "when_built"
@@ -19,6 +38,28 @@ ActiveRecord::Schema.define(:version => 20130827032033) do
     t.string   "longitude"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "hotel_names", :force => true do |t|
+    t.string   "name"
+    t.string   "hotel_short_name"
+    t.integer  "hotel_info_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "pax_contexts", :force => true do |t|
+    t.integer  "context_rate_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "paxes", :force => true do |t|
+    t.string   "name"
+    t.integer  "quantity"
+    t.integer  "pax_context_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -33,6 +74,28 @@ ActiveRecord::Schema.define(:version => 20130827032033) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "range_dates", :force => true do |t|
+    t.date     "start"
+    t.date     "end"
+    t.integer  "season_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "rates", :force => true do |t|
+    t.string   "name"
+    t.integer  "season_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "seasons", :force => true do |t|
+    t.string   "name"
+    t.integer  "hotel_info_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

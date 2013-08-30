@@ -26,6 +26,10 @@ gem 'jquery-rails'
 gem 'fastercsv' # Only required on Ruby 1.8 and below
 gem 'rails_admin'
 
+gem 'spreadsheet', '0.7.9'
+gem 'ffaker'
+gem 'nokogiri', '1.5.10'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

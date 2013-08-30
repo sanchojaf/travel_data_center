@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start: 2013-08-27
+  end: 2013-08-27
+  season_id: 1
+
+two:
+  start: 2013-08-27
+  end: 2013-08-27
+  season_id: 1
