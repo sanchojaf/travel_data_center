@@ -25,6 +25,7 @@ gem 'jquery-rails'
 
 gem 'fastercsv' # Only required on Ruby 1.8 and below
 gem 'rails_admin'
+gem 'bootstrap-sass'
 
 gem 'spreadsheet', '0.7.9'
 gem 'ffaker'

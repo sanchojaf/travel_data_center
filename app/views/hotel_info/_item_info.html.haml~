@@ -1,0 +1,15 @@
+- @hotel_infos.each do |h|
+  - hotel_name = "Hotel #{h.hotel_name.name}"
+  %h4{:itemprop => "name"}
+    = hotel_name
+    - star = 2 + rand(3)
+    - 1.upto(star) do
+      %i.icon-star
+    %br/
+    %small.muted
+      = Faker::Address.street_address
+      %a
+        %span Show at map
+        %i.icon-map-marker
+  %p.hidden-phone
+    = truncate(Faker::Lorem.sentence(word_count = 50), :length => 240)

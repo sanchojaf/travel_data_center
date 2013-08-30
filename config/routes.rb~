@@ -4,8 +4,6 @@ TravelDataCenter::Application.routes.draw do
   get "hotel_info/index"
 
   devise_for :users
-  
-  root :to => "home#index"
 
   mount RailsAdmin::Engine => '/data', :as => 'rails_admin'
 

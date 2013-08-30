@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(:version => 20130830153430) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "category"
+    t.string   "chain"
+    t.string   "check_in"
+    t.string   "check_out"
     t.string   "property_type"
     t.string   "segment"
     t.datetime "created_at",    :null => false

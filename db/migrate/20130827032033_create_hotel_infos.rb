@@ -6,6 +6,9 @@ class CreateHotelInfos < ActiveRecord::Migration
       t.string :latitude
       t.string :longitude
       t.string :category
+      t.string :chain 
+      t.string :check_in 
+      t.string :check_out
       t.string :property_type
       t.string :segment
       t.timestamps

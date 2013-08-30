@@ -1,0 +1,31 @@
+%table.table.table-hover.table-condensed
+	%tr		
+		%th Chain
+		%th Nombre
+		%th Address		
+	- @hotel_infos.each do |h|	
+		%tr
+			%td
+				- "#{h.chain}"				
+			%td 
+				- hotel_name = "#{h.hotel_name.name}"
+				%h4{:itemprop => "name"}
+					= hotel_name
+					- star = 1
+					- star = 2 if h.category == "2 estrellas"
+					- star = 3 if h.category == "3 estrellas"
+					- star = 4 if h.category == "4 estrellas"
+					- star = 5 if h.category == "5 estrellas"					
+					- 1.upto(star) do
+						%i.icon-star
+			%td 			
+				%small.muted
+					= h.address.street_address
+					%br
+					= h.address.city
+					%br
+					%a
+						%span Show at map
+						%i.icon-map-marker
+			
+   

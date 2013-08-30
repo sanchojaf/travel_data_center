@@ -117,8 +117,7 @@ elsif key == 2
 			segment			    = sheet[row,9]						
 			locate_in 			= sheet[row,10]			
 		    street_address 		= sheet[row,11]			
-		    email 		        = sheet[row,12]	
-		    
+		    email 		        = sheet[row,12]			    
 			zipcode  			= ""
 			fax 			    = sheet[row,13]
 			phone 				= sheet[row,14]
@@ -129,7 +128,10 @@ elsif key == 2
 			longitude 			= sheet[row,17]
 			google_map_url 	    = sheet[row,18]	
 			when_built   		= sheet[row,19]	
-			hotel_status 		= "open"									
+			hotel_status 		= "open"		
+			check_in 	        = sheet[row,25]	
+			check_out   		= sheet[row,26]								
+			
 			hotel_name = HotelName.create({:name => name, 
 										   :hotel_short_name => short_name,
 										   :index_name => index_name,
@@ -157,9 +159,11 @@ elsif key == 2
 											:category => category,
 											:longitude => longitude,
 										    :property_type => property_type,
-										    :segment => segment,										    									
-											})																		
-			
+										    :segment => segment,		
+										    :chain => chain,	
+										    :check_in => check_in,								    									
+										    :check_out => check_out,								    									
+											})																					
 			hotel.hotel_name = hotel_name
 			hotel.address = hotel_address    
 			hotel.contact = hotel_contact
