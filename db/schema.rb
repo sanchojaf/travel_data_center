@@ -10,19 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830012829) do
+ActiveRecord::Schema.define(:version => 20130830153430) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_address"
     t.string   "city"
     t.string   "zipcode"
-    t.string   "phone"
     t.string   "state_name"
+    t.string   "locate_in"
+    t.integer  "hotel_info_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "phone"
     t.string   "alternative_phone"
+    t.string   "email"
     t.string   "fax"
     t.string   "web"
     t.string   "google_map_url"
-    t.string   "locate_in"
     t.integer  "hotel_info_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -40,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130830012829) do
     t.string   "hotel_status"
     t.string   "latitude"
     t.string   "longitude"
+    t.string   "category"
     t.string   "property_type"
     t.string   "segment"
     t.datetime "created_at",    :null => false

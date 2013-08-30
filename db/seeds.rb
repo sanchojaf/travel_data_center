@@ -36,9 +36,7 @@ sourses = ["#{Rails.root}/db/load_data/sample_hotels.xls",
            "#{Rails.root}/db/load_data/hoteles_cuba.xls"]
 
 key = 2
-
 path = sourses[key]
-
 book = Spreadsheet.open path
 book.worksheets
 sheet = book.worksheet 0
@@ -48,6 +46,19 @@ last_row_index = sheet.last_row_index
 last_row_index = 20 if sample
 
 if key == 0 or key ==1 
+
+#"Destino"	
+# "Cadena"	
+# "Nombre Hotel"	
+# "Nombre Habitación"	
+# "Tipo de propiedad"	
+# "Confort"	
+# "Plan alimenticio"	
+# "Nivel de servicio"	
+# "Ubicación"	
+# "Vista"	Especiales	Temporada	F. Inicio	F. Finalización	Simple	Doble	Triple	CP	MAP	MAP (CHD)	AP	Adulto (+13) adicional	Niño(3-12)		2-Adultos?(SI/NO)	Bebé(0-2)		Max-Adultos	Max-Niños	Excepciones		Margen (%)	Penalidad		Proveedor	Propietario	Prestatario	Modalidad	Dirección	Municipio	Email	Fax	Teléfono	Web	Latitud	Longitud	Segmento Turístico	Categoría hotel
+
+
 	for row in 6..sheet.last_row_index  
 		if sheet[row,0]	    
 			destination = sheet[row,0]
@@ -95,17 +106,19 @@ elsif key == 2
 	for row in 1..last_row_index  
 		if sheet[row,0]	    
 		    index_name 			= sheet[row,0]				
-		    name 				= sheet[row,1]
-		    short_name 			= sheet[row,2]
-		    permalink 			= sheet[row,3]				
+		    name 				= if sheet[row,1] then sheet[row,1] else index_name end 
+		    short_name          = if sheet[row,2] then sheet[row,2] else name end
+		    permalink 			= if sheet[row,3] then sheet[row,3]  else name.downcase.gsub(' ', '-') end
 			city 				= sheet[row,4]			    		    
 			destination 		= sheet[row,5]
-		    #category 			= sheet[row,6]				
+		    category 			= sheet[row,6]				
 		    property_type 		= sheet[row,7]			
 			chain 				= sheet[row,8]			
-			segment			= sheet[row,9]						
+			segment			    = sheet[row,9]						
 			locate_in 			= sheet[row,10]			
 		    street_address 		= sheet[row,11]			
+		    email 		        = sheet[row,12]	
+		    
 			zipcode  			= ""
 			fax 			    = sheet[row,13]
 			phone 				= sheet[row,14]
@@ -114,32 +127,34 @@ elsif key == 2
 			alternative_phone   = ""  
 			latitude 			= sheet[row,16]	
 			longitude 			= sheet[row,17]
-			google_map_url 	= sheet[row,18]	
+			google_map_url 	    = sheet[row,18]	
 			when_built   		= sheet[row,19]	
 			hotel_status 		= "open"									
 			hotel_name = HotelName.create({:name => name, 
 										   :hotel_short_name => short_name,
 										   :index_name => index_name,
-										   :permalink => permalink
-										   
+										   :permalink => permalink										  
 											})										
 			hotel_address = Address.create({
 											:street_address => street_address,
 											:city => city,
 											:zipcode => zipcode,
+			                                :locate_in => locate_in,
+											:state_name => state_name,
+											})																		
+           hotel_contact = Contact.create({											
 										    :fax => fax,
 										    :web => web,
-			                                :google_map_url => google_map_url,     							    
-			                                :locate_in => locate_in,
-											:phone => phone,
-											:state_name => state_name,
+			                                :google_map_url => google_map_url,     							    			                                
+											:phone => phone,											
 											:alternative_phone => alternative_phone,									
-											})																		
+											:email => email,
+											})											
 			hotel = HotelInfo.create({
 											:when_built => when_built,
 											:hotel_status => hotel_status,											
 											:latitude => latitude,
-											#category
+											:category => category,
 											:longitude => longitude,
 										    :property_type => property_type,
 										    :segment => segment,										    									
@@ -147,6 +162,7 @@ elsif key == 2
 			
 			hotel.hotel_name = hotel_name
 			hotel.address = hotel_address    
+			hotel.contact = hotel_contact
 			hotel.save
 			puts "... Hotel #{hotel_name.name} ..."
 		end
