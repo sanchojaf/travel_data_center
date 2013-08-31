@@ -1,13 +1,12 @@
-TravelDataCenter::Application.routes.draw do
-  get "home/index"
-
+TravelDataCenter::Application.routes.draw do  
   get "hotel_info/index"
-
-  devise_for :users
-  
   root :to => "home#index"
+  devise_for :users
 
   mount RailsAdmin::Engine => '/data', :as => 'rails_admin'
+  
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
