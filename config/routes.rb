@@ -1,5 +1,5 @@
-TravelDataCenter::Application.routes.draw do  
-  get "hotel_info/index"
+TravelDataCenter::Application.routes.draw do
+  resources :hotel_infos  
   root :to => "home#index"
   devise_for :users
 
