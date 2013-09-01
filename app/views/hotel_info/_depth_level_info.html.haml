@@ -1,0 +1,46 @@
+%table.table.table-hover.table-condensed.hidden-phone  
+  - plans = ["CP", "AP", "MAP"]
+  %thead
+    %tr
+      %th Seanson   
+      %th Available room types
+      %th Persons
+      - plans.each do |plan|
+        %th
+          = plan
+  %body
+    - rooms = ["Standard Studio", "Superior Room", "Executive Room", "Deluxe Studio", "One-Bedroom Apartment","Two-Bedroom Apartment", "Suite", "Junior Suite"]
+    - seasons = [{"Low"         =>  {:ranges => [{ :start => "01/01/12",:end => "12/21/12"}, 
+                                                 { :start => "05/01/13",:end => "07/20/13"}],
+                                     :type => 'success'}},
+                 {"Medium"      =>  {:ranges => [{ :start => "08/21/13",:end => "10/31/13"}, 
+                                                 { :start => "04/01/13",:end => "04/30/13"}],
+                                     :type => 'success' }},                                                        
+                 {"High"        =>  {:ranges => [{ :start => "07/21/13",:end => "08/24/13"}]}},                  
+                 {"Extra high"  =>  [{ :start => "01/03/13",:end => "03/31/13"}]}, 
+                 {"Peak"        =>  [{ :start => "07/21/13",:end => "08/24/13"}]}]                                                     
+    - for i in 0...seasons.length                                                      
+      - colum = 2 + rand(3)
+      - 1.upto(colum) do
+        %tr
+          %td
+            - type_styles = {"Low" => "success","Medium" => "info", "High" => "primary", "Extra high" =>"warning", "Peak" =>"danger"} 
+            - key = seasons[i].keys.first 
+            %button{:class => "btn btn-#{type_styles[key]} btn-mini"}
+              = seasons[i].keys.first           
+          %td          
+            - room = rooms[rand(7)]
+            %a{:href => "#"}
+              = room          
+          %td
+            - paxs = 1 + rand(3)
+            - 1.upto(paxs) do
+              %i.icon-user.icon-large
+            - childs = rand(2)
+            - if childs > 0
+              +
+              - 1.upto(childs) do
+                %i.icon-user
+          - plans.each do |plan|
+            %td 
+              = "#{100 + rand(200)} USD"
