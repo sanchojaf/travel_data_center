@@ -1,4 +1,4 @@
 class RangeDate < ActiveRecord::Base
-  attr_accessible :end, :start
-  belongs_to :season, :inverse_of => :range_dates
+  belongs_to :season, :dependent => :destroy, :inverse_of => :range_dates
+  attr_accessible :end, :start  
 end

@@ -1,11 +1,19 @@
 TravelDataCenter::Application.routes.draw do
+  root :to => 'home#index'
   resources :hotel_infos  
-  root :to => "home#index"
+  get "/home/index"
+
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  
   devise_for :users
 
   mount RailsAdmin::Engine => '/data', :as => 'rails_admin'
   
-  
+  namespace :data do
+	root :to  => "data#index"
+  end  
   
 
   # The priority is based upon order of creation:

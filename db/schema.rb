@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830153430) do
+ActiveRecord::Schema.define(:version => 20130901171705) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street_address"
@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(:version => 20130830153430) do
     t.integer  "rate_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "context_rates_rooms", :id => false, :force => true do |t|
+    t.integer "context_rate_id"
+    t.integer "room_id"
   end
 
   create_table "hotel_infos", :force => true do |t|
@@ -104,9 +109,16 @@ ActiveRecord::Schema.define(:version => 20130830153430) do
 
   create_table "rates", :force => true do |t|
     t.string   "name"
-    t.integer  "season_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "range_date_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.integer  "hotel_info_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "seasons", :force => true do |t|

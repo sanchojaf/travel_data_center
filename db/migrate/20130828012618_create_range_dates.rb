@@ -4,7 +4,6 @@ class CreateRangeDates < ActiveRecord::Migration
       t.date :start
       t.date :end
       t.integer :season_id
-
       t.timestamps
     end
   end

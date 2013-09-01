@@ -4,6 +4,6 @@
     <%= link_to 'Data', "/data" %>
   </li>
   <li>
-    <%= link_to 'Hotels Info', '/hotel_infos'%>
+    <%= link_to 'Hotels Info', :controller => 'hotel_infos', :action => 'index'  %>
   </li>
 </ul>

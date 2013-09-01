@@ -4,7 +4,6 @@ class CreatePaxes < ActiveRecord::Migration
       t.string :name
       t.integer :quantity
       t.integer :pax_context_id
-
       t.timestamps
     end
   end
