@@ -31,6 +31,7 @@ gem 'spreadsheet', '0.7.9'
 gem 'ffaker'
 gem 'nokogiri', '1.5.10'
 
+gem 'jquery-datatables-rails', :github => 'rweng/jquery-datatables-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,4 +1,4 @@
-%table.table.table-hover.table-condensed.hidden-phone  
+%table.table.table-hover.table-condensed.rooms
   - plans = ["CP", "AP", "MAP"]
   %thead
     %tr
