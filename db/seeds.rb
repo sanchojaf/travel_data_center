@@ -119,7 +119,7 @@ if true #key == 1
 											:longitude => longitude,
 										    :property_type => property_type,
 										    :segment => segment,		
-										    :chain => chain,	
+									    :chain => chain,	
 										    :check_in => check_in,								    									
 										    :check_out => check_out,								    									
 											})																					
@@ -137,8 +137,9 @@ path = sourses[key]
 book = Spreadsheet.open path
 book.worksheets
 sheet = book.worksheet 0
-
-if true #key == 0 
+last_row = sheet.last_row_index
+  
+if false #key == 0 
 #{ 0 => "Destino", 			1 => "Cadena" 						2 =>"Nombre Hotel", 		3 =>"Nombre Habitación", 4 => "Tipo de propiedad", 
 #  5 => "Confort", 			6 => "Plan alimenticio", 			7 => "Nivel de servicio", 	8 => "Ubicación", 		 9 => "Vista", 
 # 10 => "Especiales", 	   11 => "Temporada", 				   12 => "F. Inicio", 		   13 => "F. Finalización",  14 => "Simple", 
@@ -148,13 +149,13 @@ if true #key == 0
 # 36 => "Municipio", 	   37 => "Email", 					   38 => "Fax", 			   39 => "Teléfono", 	     40 => "Web", 			41 => "Latitud",   42 => "Longitud",	43 => "Segmento Turístico", 
 # 44 => "Categoría hotel", 45 => "Descripción", 			   46 => "Descripción de tarifa"}
 
-	for row in 6..sheet.last_row	      
+	for row in 6...last_row	      
 		if sheet[row,2]	
 			hotel_name = HotelName.find_by_name(sheet[row,2]) 			
 			if hotel_name
 				hotel = hotel_name.hotel_info 	
 			else 	
-				continue 
+				next 
 		    end								
 		    row_j = row + 1 
 			while sheet[row_j, 2] and row_j <= last_row	

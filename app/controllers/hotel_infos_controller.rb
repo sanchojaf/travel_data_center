@@ -14,7 +14,7 @@ class HotelInfosController < ApplicationController
 
   # GET /hotel_infos
   # GET /hotel_infos.json
-  def index_temp
+  def index_hotels
     @hotel_infos = HotelInfo.all
 
     respond_to do |format|
