@@ -19,5 +19,21 @@ class HotelInfo < ActiveRecord::Base
 
   has_many :rooms, :dependent => :destroy, :inverse_of => :hotel_info
   attr_accessible :room_ids
+  
+	rails_admin do
+		field  :hotel_name
+		field  :chain
+		field  :category
+		field  :property_type
+		field  :segment
+		field  :hotel_status
+		field  :check_in
+		field  :check_out
+		field  :latitude
+		field  :longitude
+		field  :when_built		
+		field  :rooms
+		field  :seasons						
+	end	
       
 end
