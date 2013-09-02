@@ -34,7 +34,7 @@
 sourses = ["#{Rails.root}/db/load_data/hotels.xls",
            "#{Rails.root}/db/load_data/hoteles_cuba.xls"]
 
-key = 0
+key = 1
 path = sourses[key]
 book = Spreadsheet.open path
 book.worksheets
@@ -44,26 +44,16 @@ sheet = book.worksheet 0
 last_row = sheet.last_row_index  
 # last_row = 20
 
-if key == 0 
-#{ 0 => "Destino", 			1 => "Cadena" 						2 =>"Nombre Hotel", 		3 =>"Nombre Habitación", 4 => "Tipo de propiedad", 
-#  5 => "Confort", 			6 => "Plan alimenticio", 			7 => "Nivel de servicio", 	8 => "Ubicación", 		 9 => "Vista", 
-# 10 => "Especiales", 	   11 => "Temporada", 				   12 => "F. Inicio", 		   13 => "F. Finalización",  14 => "Simple", 
-# 15 => "Doble", 		   16 => "Triple", 					   17 => "CP", 				   18 => "MAP", 			 19 => "MAP (CHD)",  	20 => "AP", 	   21 => "Adulto (+13) adicional", 
-# 22 => "1er CHD",		   23 => "2do CHD",  				   24 => "2-Adultos?(SI/NO)",  25 => "Bebé(0-2)",	 	 26 => "Max-Adultos", 	27 => "Max-Niños", 28 => "Excepciones", 
-# 29 => "Margen (%)", 	   30 => "Penalidad", 				   31 => "Proveedor", 		   32 => "Propietario", 	 33 => "Prestatario",	34 => "Modalidad", 35 => "Dirección",
-# 36 => "Municipio", 	   37 => "Email", 					   38 => "Fax", 			   39 => "Teléfono", 	     40 => "Web", 			41 => "Latitud",   42 => "Longitud",	43 => "Segmento Turístico", 
-# 44 => "Categoría hotel", 45 => "Descripción", 			   46 => "Descripción de tarifa"}
+# Method to get a product permalink
+def get_permalink(product_name)
+  bad_chars = {'Á' => 'a', 'É' => 'e', 'Í' => 'i', 'Ó' => 'o', 'Ú' => 'u', 'Ü' => 'u', 'Ñ' => 'n', 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', ' ' => '-', ',' => '', ')' => '', '(' => '', "'" => ''}
+  name = product_name.gsub(/(.)/) {|s| bad_chars[s] ? bad_chars[s] : s}
+  return name.downcase
+end
 
-	for row in 6..sheet.last_row  
-		if sheet[row,2]		    
-		    row_j = row + 1 
-			while sheet[row_j, 2] and row_j <= last_row	
-				name_room = sheet[row_j, 3] unless sheet[row_j, 3].blank?
-				
-			end	
-		end
-	end
-elsif key == 1
+
+
+if true #key == 1
 #	head = { 
 #	0 => "Nombre de índece", 	1 => "Nombre de Presentación", 2 =>  "Nombre Corto",   3 =>  "Permalink",     4 =>  "Provincia",
 #   5 =>  "Destino Turístico", 	6 =>  "Categoría",             7 =>  "Tipo",           8 =>  "Administrado",  9 =>  "Modalidad", 
@@ -142,11 +132,36 @@ elsif key == 1
 	end         
                                 
 end
+key = 0
+path = sourses[key]
+book = Spreadsheet.open path
+book.worksheets
+sheet = book.worksheet 0
 
+if true #key == 0 
+#{ 0 => "Destino", 			1 => "Cadena" 						2 =>"Nombre Hotel", 		3 =>"Nombre Habitación", 4 => "Tipo de propiedad", 
+#  5 => "Confort", 			6 => "Plan alimenticio", 			7 => "Nivel de servicio", 	8 => "Ubicación", 		 9 => "Vista", 
+# 10 => "Especiales", 	   11 => "Temporada", 				   12 => "F. Inicio", 		   13 => "F. Finalización",  14 => "Simple", 
+# 15 => "Doble", 		   16 => "Triple", 					   17 => "CP", 				   18 => "MAP", 			 19 => "MAP (CHD)",  	20 => "AP", 	   21 => "Adulto (+13) adicional", 
+# 22 => "1er CHD",		   23 => "2do CHD",  				   24 => "2-Adultos?(SI/NO)",  25 => "Bebé(0-2)",	 	 26 => "Max-Adultos", 	27 => "Max-Niños", 28 => "Excepciones", 
+# 29 => "Margen (%)", 	   30 => "Penalidad", 				   31 => "Proveedor", 		   32 => "Propietario", 	 33 => "Prestatario",	34 => "Modalidad", 35 => "Dirección",
+# 36 => "Municipio", 	   37 => "Email", 					   38 => "Fax", 			   39 => "Teléfono", 	     40 => "Web", 			41 => "Latitud",   42 => "Longitud",	43 => "Segmento Turístico", 
+# 44 => "Categoría hotel", 45 => "Descripción", 			   46 => "Descripción de tarifa"}
 
-# Method to get a product permalink
-def get_permalink(product_name)
-  bad_chars = {'Á' => 'a', 'É' => 'e', 'Í' => 'i', 'Ó' => 'o', 'Ú' => 'u', 'Ü' => 'u', 'Ñ' => 'n', 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ü' => 'u', 'ñ' => 'n', ' ' => '-', ',' => '', ')' => '', '(' => '', "'" => ''}
-  name = product_name.gsub(/(.)/) {|s| bad_chars[s] ? bad_chars[s] : s}
-  return name.downcase
+	for row in 6..sheet.last_row	      
+		if sheet[row,2]	
+			hotel_name = HotelName.find_by_name(sheet[row,2]) 			
+			if hotel_name
+				hotel = hotel_name.hotel_info 	
+			else 	
+				continue 
+		    end								
+		    row_j = row + 1 
+			while sheet[row_j, 2] and row_j <= last_row	
+				room_name = sheet[row_j, 3] unless sheet[row_j, 3].blank?
+				room = Room.create({:name => room_name})				
+			end	
+		end
+	end
 end
+
