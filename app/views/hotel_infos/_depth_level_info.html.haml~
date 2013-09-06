@@ -44,3 +44,4 @@
           - plans.each do |plan|
             %td 
               = "#{100 + rand(200)} USD"
+%br              

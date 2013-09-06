@@ -41,8 +41,8 @@ book.worksheets
 sheet = book.worksheet 0
 
 
-last_row = sheet.last_row_index  
-# last_row = 20
+#last_row = sheet.last_row_index  
+last_row = 20
 
 # Method to get a product permalink
 def get_permalink(product_name)

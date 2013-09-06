@@ -1,42 +1,24 @@
-- @hotel_infos.each do |h|  
-  - "#{h.chain}"  
-  - hotel_name = "#{h.hotel_name.name}"
-  %h4{:itemprop => "name"}
-    = hotel_name
-    - stars = 0 
-    - stars = h.category.split("estrellas")[0].to_i unless h.category.nil?
-    - 1.upto(stars) do
-      %i.icon-star-empty
-  %small.muted
-    = h.address.street_address
-    %br
-    = h.address.city
-    %br
-    %a
-      %span Show at map
-      %i.icon-map-marker
-  .progress.progress-info.progress-striped
-    - star_date = DateTime.new(2012,10,1)
-    - date_now = DateTime.now
-    - progress_date = (date_now -star_date).to_i
-    - progress = (progress_date/365*100).to_i
-    %div{:class => "bar", :style => "width: #{77}%;"} 
-      %strong 
-        Past
-  .progress.bar
-    - ranges = [{"Low" => 22}, {"Peak" => 18}, {"Extra high" => 10}, {"Medium" => 8}, {"Low" => 31}, {"High" => 11}]
-    - type_styles = {"Low" => "success","Medium" => "info", "High" => "default", "Extra high" =>"warning", "Peak" =>"danger"}      
-    - for i in 0...ranges.length        
-      - value = ranges[i].values[0]
-      - key = ranges[i].keys[0]
-      - type_style = "default"
-      - type_style = type_styles[key] if type_styles[key]
-      %div{:class => "bar bar-#{type_style}", :style => "width: #{value}%;"}
-        %strong 
-          = key
-          %a{"data-placement" => "top", :href => "#", :rel => "tooltip", :title => "31/10/12 - 12/01/13"}
-            %i.icon-hand-down.icon-white
-  %small
-    = render 'depth_level_info'
-      
-   
+%table.table.table-hover.table-condensed.datatable
+  %thead
+    %tr
+      %th Chain
+      %th Name
+      %th Category
+      %th Type
+      %th Segment
+      %th City          
+      %th Latitude
+      %th Longitude    
+  %body
+  - @hotel_infos.each do |hotel_info|
+    %tr
+      %td= hotel_info.chain
+      %td 
+        = link_to(hotel_info.hotel_name.name, :controller => 'hotel_infos', :action => 'show', :id => hotel_info.id) # :name => hotel_info.hotel_name.name
+      %td= hotel_info.category.split("estrellas")[0].to_i unless hotel_info.category.nil?
+      %td= hotel_info.property_type      
+      %td= hotel_info.segment      
+      %td= hotel_info.address.city                         
+      %td= hotel_info.latitude
+      %td= hotel_info.longitude                  
+%br/

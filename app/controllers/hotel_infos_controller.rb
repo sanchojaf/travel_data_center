@@ -23,7 +23,7 @@ class HotelInfosController < ApplicationController
     end
   end
   
-    # GET /hotel_infos/1
+  # GET /hotel_infos/1
   # GET /hotel_infos/1.json
   def show
     @hotel_info = HotelInfo.find(params[:id])

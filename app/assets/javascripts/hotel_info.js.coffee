@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-    $('.rooms').dataTable() 
+    $('.datatable').dataTable() 
     
 #jQuery ->       
-#    $('.rooms').dataTable iDisplayStart: 5
+#    $('.datatable').dataTable iDisplayStart: 5
